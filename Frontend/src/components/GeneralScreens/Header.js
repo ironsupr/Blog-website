@@ -99,6 +99,15 @@ const Header = () => {
                                     </span>
                                 </Link>
 
+                                <Link
+                                    to="/drafts"
+                                    className='drafts-link'
+                                    aria-label="My Drafts"
+                                >
+                                    <RiPencilFill />
+                                    <span>Drafts</span>
+                                </Link>
+
                                 <div className='header-profile-wrapper'>
                                     {loading ? (
                                         <SkeletonElement type="minsize-avatar" />
@@ -163,6 +172,14 @@ const Header = () => {
                                 >
                                     <BsBookmarks />
                                     Reading List
+                                </Link>
+                                <Link
+                                    to="/drafts"
+                                    className="mobile-menu-item"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    <RiPencilFill />
+                                    Drafts
                                 </Link>
                                 <Link 
                                     to="/profile" 

@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose")
 const Comment = require("./comment")
 const slugify = require("slugify")
@@ -45,8 +44,31 @@ const StorySchema = new mongoose.Schema({
     commentCount: {
         type: Number,
         default: 0
+    },
+    isDraft: {
+        type: Boolean,
+        default: false,
+        index: true
+    },
+    draftLastModified: {
+        type: Date,
+        default: Date.now
+    },
+    tags: [{
+        type: String,
+        trim: true,
+        lowercase: true,
+        validate: {
+            validator: function(v) {
+                return v.length >= 2 && v.length <= 20;
+            },
+            message: 'Tag must be between 2 and 20 characters'
+        }
+    }],
+    lastSaved: {
+        type: Date,
+        default: Date.now
     }
-
 
 }, { timestamps: true })
 

@@ -1,25 +1,25 @@
 :root {
-  /* Light theme colors (default) */
-  --background-color: #ffffff;
-  --background-gradient: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  --text-color: #333333;
-  --text-color-light: #666666;
-  --border-color: rgba(0, 0, 0, 0.1);
-  --card-background: #ffffff;
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --header-background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --input-background: rgba(105, 113, 116, 0.08);
-  --button-primary: #3d566e;
-  --button-hover: #4a6583;
-  --button-disabled: rgba(61, 86, 110, 0.5);
-  --button-primary-transparent: rgba(61, 86, 110, 0.1);
-  --button-secondary: #5e7c99;
-  --button-secondary-hover: #6b8cad;
-  --code-background: #f8f9fa;
-  --code-color: #333333;
-  --primary-color: #3d566e;
-  --primary-color-dark: #2c3e4f;
+  /* Light theme colors (default) - Space Theme */
+  --background-color: #0a1929;
+  --background-gradient: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+  --text-color: #e0f2ff;
+  --text-color-light: #88b2d9;
+  --border-color: rgba(99, 179, 237, 0.15);
+  --card-background: rgba(13, 25, 42, 0.7);
+  --card-shadow: 0 8px 32px rgba(2, 4, 15, 0.3);
+  --header-background: rgba(10, 25, 41, 0.8);
+  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --input-background: rgba(23, 49, 77, 0.6);
+  --button-primary: #2d9cdb;
+  --button-hover: #3db3f5;
+  --button-disabled: rgba(45, 156, 219, 0.5);
+  --button-primary-transparent: rgba(45, 156, 219, 0.15);
+  --button-secondary: #4299e1;
+  --button-secondary-hover: #63b3ed;
+  --code-background: #1a365d;
+  --code-color: #e2e8f0;
+  --primary-color: #2d9cdb;
+  --primary-color-dark: #2b6cb0;
 }
 
 /* Dark theme colors */

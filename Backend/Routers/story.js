@@ -2,7 +2,7 @@ const express = require("express")
 const imageupload = require("../Helpers/Libraries/imageUpload");
 
 const { getAccessToRoute } = require("../Middlewares/Authorization/auth");
-const {addStory,getAllStories,detailStory,likeStory, editStory, deleteStory, editStoryPage } = require("../Controllers/story")
+const {addStory,getAllStories,detailStory,likeStory, editStory, deleteStory, editStoryPage, getAllDrafts } = require("../Controllers/story")
 const { checkStoryExist, checkUserAndStoryExist } = require("../Middlewares/database/databaseErrorhandler");
 
 const router = express.Router() ;
@@ -22,5 +22,6 @@ router.delete("/:slug/delete",[getAccessToRoute,checkStoryExist,checkUserAndStor
 
 router.get("/getAllStories",getAllStories)
 
+router.get("/getDrafts", getAccessToRoute, getAllDrafts)
 
 module.exports = router

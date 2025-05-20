@@ -16,6 +16,7 @@ import ChangePassword from './components/ProfileScreens/ChangePassword';
 import NotFound from './components/GeneralScreens/NotFound';
 import EditStory from './components/StoryScreens/EditStory';
 import ReadListPage from './components/ProfileScreens/ReadListPage';
+import DraftsPage from './components/StoryScreens/DraftsPage';
 import './Css/Theme.css';
 
 const App = () => {
@@ -69,6 +70,10 @@ const App = () => {
 
                                     <Route exact path='/readList' element={<PrivateRoute />}>
                                           <Route exact path='/readList' element={<ReadListPage />} />
+                                    </Route>
+
+                                    <Route exact path='/drafts' element={<PrivateRoute />}>
+                                          <Route exact path='/drafts' element={<DraftsPage />} />
                                     </Route>
 
                               </Route>
