@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.footer-container {
+    background-color: var(--footer-background);
+    padding-top: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 0 20px 20px 0;
+    min-width: 250px;
+}
+
+.footer-section.about h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.footer-section.about p {
+    color: var(--text-color-light);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-3px);
+}
+
+.footer-section h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-section.links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section.links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section.links ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section.links ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.footer-section.contact p {
+    color: var(--text-color-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-section.contact p i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.copyright {
+    background-color: var(--footer-copyright-background);
+    padding: 15px 0;
+    text-align: center;
+}
+
+.copyright .copyright-blog {
+    font-size: 14px;
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+}
+
+.copyright {
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 10px;
+}
+
+.copyright .copyright-blog {
+    font-size: 18px;
+    color: var(--text-color);
+    text-align: center;
+    margin: 0px;
+}

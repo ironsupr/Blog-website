@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.Inclusive-home-page {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--background-gradient);
+    overflow-x: hidden;
+}
+
+.story-card-wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 0;
+    position: relative;
+}
+
+/* Decorative SVG elements */
+.bg-planet-svg {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    opacity: 0.4;
+    z-index: 0;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+    animation: float 8s ease-in-out infinite;
+}
+
+.bg-planet2-svg {
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    opacity: 0.3;
+    z-index: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.1));
+    animation: float 12s ease-in-out infinite;
+}
+
+.bg-planet3-svg {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.3;
+    z-index: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.1));
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Story cards */
+.story-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.story-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.dark-theme .story-card {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.story-card-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.story-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.story-card:hover .story-card-img img {
+    transform: scale(1.05);
+}
+
+.story-card-content {
+    padding: 20px;
+}
+
+.story-card-content h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.story-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    height: 55px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    color: var(--text-color-light);
+}
+
+.story-card-date {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--story-date-color);
+}
+
+/* Media queries */
+@media screen and (min-width: 768px) {
+    .story-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .story-card {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .story-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bg-planet-svg,
+    .bg-planet2-svg,
+    .bg-planet3-svg {
+        display: none;
+    }
+    
+    .story-card-wrapper {
+        width: 95%;
+        padding: 20px 0;
+    }
+}

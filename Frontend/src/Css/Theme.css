@@ -1,0 +1,78 @@
+:root {
+  /* Light theme colors (default) */
+  --background-color: #ffffff;
+  --background-gradient: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  --text-color: #333333;
+  --text-color-light: #666666;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-background: #ffffff;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --header-background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --input-background: rgba(105, 113, 116, 0.08);
+  --button-primary: #3d566e;
+  --button-hover: #4a6583;
+  --footer-background: #f8f9fa;
+  --profile-menu-background: #ffffff;
+  --story-date-color: #6c757d;
+  --search-icon-color: #3d566e;
+  --logo-color: #3d566e;
+  --link-color: #3d566e;
+  --link-hover-color: #4a6583;
+}
+
+/* Dark theme colors */
+.dark-theme {
+  --background-color: #0a0a0a;
+  --background-gradient: linear-gradient(135deg, #121212 0%, #0a0a0a 100%);
+  --text-color: #e0e0e0;
+  --text-color-light: #9e9e9e;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --card-background: #1a1a1a;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --header-background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --input-background: rgba(255, 255, 255, 0.05);
+  --button-primary: #4a6583;
+  --button-hover: #5d7e9e;
+  --footer-background: #121212;
+  --profile-menu-background: #1a1a1a;
+  --story-date-color: #9e9e9e;
+  --search-icon-color: #4a6583;
+  --logo-color: #4a6583;
+  --link-color: #4a6583;
+  --link-hover-color: #5d7e9e;
+}
+
+/* Apply theme colors to elements */
+body {
+  background-color: var(--background-color);
+  background-image: var(--background-gradient);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode toggle button styles */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--input-background);
+  transform: rotate(30deg);
+}
+
+.theme-toggle-btn svg {
+  font-size: 1.2rem;
+}
