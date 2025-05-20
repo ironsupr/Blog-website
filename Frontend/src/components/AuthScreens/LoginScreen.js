@@ -6,11 +6,12 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate()
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const loginHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const { data } = await axios.post(
@@ -18,6 +19,7 @@ const LoginScreen = () => {
         { email, password }
       );
       localStorage.setItem("authToken", data.token);
+      setLoading(false);
 
       setTimeout(() => {
 
@@ -50,17 +52,13 @@ const LoginScreen = () => {
           </div> */}
 
           <div className="top-login-explain">
-            <h2>Login to Your Account </h2>
-
+            <h2>Welcome Back!</h2>
             <p>
-              Please Login Your Account, Thank You!
+              Sign in to continue your writing journey
             </p>
-
-
           </div>
 
-
-          <form onSubmit={loginHandler} >
+          <form onSubmit={loginHandler} className="auth-form">
             {error && <div className="error_message">{error}</div>}
             <div className="input-wrapper">
               <input
@@ -102,23 +100,30 @@ const LoginScreen = () => {
 
           </div>
 
-            <button type="submit" >
-              Login
+            <button 
+              type="submit"
+              className={`auth-button ${loading ? 'loading' : ''}`}
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading-spinner"></span>
+              ) : (
+                'Sign In'
+              )}
             </button>
-
           </form>
-
-
         </div>
 
-        <div className="login-banner-section ">
-
-          <img src="login.png" alt="banner" width="400px" />
+        <div className="login-banner-section">
+          <div className="banner-content">
+            <img src="login.png" alt="Login illustration" />
+            <div className="banner-text">
+              <h3>Share Your Story</h3>
+              <p>Join our community of writers and readers</p>
+            </div>
+          </div>
         </div>
-
       </div>
-
-
     </div>
 
 

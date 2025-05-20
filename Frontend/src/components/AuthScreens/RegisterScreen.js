@@ -8,17 +8,30 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
   const navigate = useNavigate();
+
+  const checkPasswordStrength = (pass) => {
+    let strength = 0;
+    if (pass.length >= 8) strength++;
+    if (/[A-Z]/.test(pass)) strength++;
+    if (/[0-9]/.test(pass)) strength++;
+    if (/[^A-Za-z0-9]/.test(pass)) strength++;
+    setPasswordStrength(strength);
+  };
 
   const registerHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (password !== confirmpassword) {
       setPassword("");
       setConfirmPassword("");
+      setLoading(false);
       setTimeout(() => {
         setError("");
-      }, 8000);
+      }, 5000);
       return setError("Passwords do not match");
     }
 
@@ -68,18 +81,13 @@ const RegisterScreen = () => {
           </div>
 
           <div className="top-register-explain">
-            <h2>Welcome to MERN Blog </h2>
-
+            <h2>Join MERN Blog Community</h2>
             <p>
-              It's easy and free to post your thinking on any topic and connect with thounsands of readers.
-
+              Start your writing journey and share your stories with the world
             </p>
-
-
           </div>
 
-
-          <form onSubmit={registerHandler} >
+          <form onSubmit={registerHandler} className="auth-form">
             {error && <div className="error_message">{error}</div>}
             <div className="input-wrapper">
               <input
@@ -113,12 +121,36 @@ const RegisterScreen = () => {
                 type="password"
                 required
                 id="password"
-                autoComplete="true"
-                placeholder="6+ strong character"
-                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                placeholder="Min. 8 characters with letters, numbers & symbols"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  checkPasswordStrength(e.target.value);
+                }}
                 value={password}
                 tabIndex={2}
+                minLength={8}
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                title="Minimum 8 characters, at least one letter, one number and one special character"
               />
+              <div className="password-strength">
+                <div className={`strength-meter ${
+                  passwordStrength === 1 ? 'weak' :
+                  passwordStrength === 2 ? 'medium' :
+                  passwordStrength === 3 ? 'strong' :
+                  passwordStrength === 4 ? 'very-strong' : ''
+                }`}>
+                  <div></div>
+                </div>
+                {passwordStrength > 0 && (
+                  <small>
+                    {passwordStrength === 1 && 'Weak'}
+                    {passwordStrength === 2 && 'Medium'}
+                    {passwordStrength === 3 && 'Strong'}
+                    {passwordStrength === 4 && 'Very Strong'}
+                  </small>
+                )}
+              </div>
               <label htmlFor="password">
                 Password
 
@@ -138,8 +170,15 @@ const RegisterScreen = () => {
               <label htmlFor="confirmpassword">Confirm Password</label>
             </div>
 
-            <button type="submit" >
-              Register
+            <button 
+              type="submit" 
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="loading-spinner"></div>
+              ) : (
+                "Register"
+              )}
             </button>
 
           </form>

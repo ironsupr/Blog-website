@@ -12,13 +12,14 @@
   --input-background: rgba(105, 113, 116, 0.08);
   --button-primary: #3d566e;
   --button-hover: #4a6583;
-  --footer-background: #f8f9fa;
-  --profile-menu-background: #ffffff;
-  --story-date-color: #6c757d;
-  --search-icon-color: #3d566e;
-  --logo-color: #3d566e;
-  --link-color: #3d566e;
-  --link-hover-color: #4a6583;
+  --button-disabled: rgba(61, 86, 110, 0.5);
+  --button-primary-transparent: rgba(61, 86, 110, 0.1);
+  --button-secondary: #5e7c99;
+  --button-secondary-hover: #6b8cad;
+  --code-background: #f8f9fa;
+  --code-color: #333333;
+  --primary-color: #3d566e;
+  --primary-color-dark: #2c3e4f;
 }
 
 /* Dark theme colors */
@@ -35,13 +36,14 @@
   --input-background: rgba(255, 255, 255, 0.05);
   --button-primary: #4a6583;
   --button-hover: #5d7e9e;
-  --footer-background: #121212;
-  --profile-menu-background: #1a1a1a;
-  --story-date-color: #9e9e9e;
-  --search-icon-color: #4a6583;
-  --logo-color: #4a6583;
-  --link-color: #4a6583;
-  --link-hover-color: #5d7e9e;
+  --button-disabled: rgba(74, 101, 131, 0.5);
+  --button-primary-transparent: rgba(74, 101, 131, 0.15);
+  --button-secondary: #6b8cad;
+  --button-secondary-hover: #7ea3c8;
+  --code-background: #2a2a2a;
+  --code-color: #e0e0e0;
+  --primary-color: #4a6583;
+  --primary-color-dark: #5d7e9e;
 }
 
 /* Apply theme colors to elements */

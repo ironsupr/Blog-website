@@ -1,171 +1,259 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap&family=Inter&family=Signika+Negative:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .Inclusive-register-page {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--background-gradient);
 }
 
 .register-big-wrapper {
-    width: 90%;
-    max-width: 1100px;
-    height: 95%;
-    border-radius: 9px;
-    background-color: var(--card-background);
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 1100px;
+  min-height: 600px;
+  background: var(--card-background);
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .section-wrapper {
-    width: 50%;
-    padding: 1.6rem 4rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.register-banner-section {
-    background-color: var(--primary-color);
-    border-radius: 9px 0 0 9px;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@media only screen and (max-width: 1100px) {
-    .register-banner-section img {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width: 860px) {
-    .register-banner-section {
-        display: none;
-    }
-    .section-wrapper {
-        max-width: 580px;
-        width: 100%;
-        margin: 0 auto;
-        padding: 1.7rem 10vw;
-    }
-    .register-big-wrapper {
-        width: 80%;
-        padding: 0;
-    }
-}
-
-.top-suggest_login {
-    font-size: 0.8rem;
-}
-
-.top-suggest_login span {
-    color: #ABB8c5;
-    margin-right: 8px;
-}
-
-.top-suggest_login a {
-    font-size: 0.7rem;
-    color: rgb(13, 16, 163);
-    text-decoration: none;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-}
-
+/* Register content styling */
 .top-register-explain {
-    margin-top: 3vh;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
 .top-register-explain h2 {
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    margin-bottom: 1.2rem;
-    font-size: 2.4rem;
-    font-family: 'Signika Negative', sans-serif;
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .top-register-explain p {
-    color: var(--text-color-light);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
+  color: var(--text-color-light);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.register-big-wrapper form {
-    position: relative;
-    padding-top: 1rem;
+/* Password strength indicator */
+.password-strength {
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 0.85rem;
 }
 
-.register-big-wrapper form label {
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    background-color: white;
-    color: #646464;
-    padding: 0 6px;
+.strength-meter {
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
 }
 
-.register-big-wrapper form .input-wrapper {
-    position: relative;
+.strength-meter div {
+  height: 100%;
+  width: 0;
+  transition: all 0.3s ease;
 }
 
-.register-big-wrapper form input {
-    outline: 0;
-    width: 100%;
-    margin-bottom: 1.8rem;
-    padding: 15px;
-    padding-top: 22px;
-    border: #dadcdd solid 1px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    color: #646464;
+.strength-meter.weak div {
+  width: 25%;
+  background: #ff4757;
 }
 
-.register-big-wrapper form input:focus-within {
-    border: #0205b1 solid 1px;
+.strength-meter.medium div {
+  width: 50%;
+  background: #ffa502;
 }
 
-.register-big-wrapper form input:focus+label {
-    color: #0205b1 !important;
+.strength-meter.strong div {
+  width: 75%;
+  background: #2ed573;
 }
 
-.register-screen__forgotpassword {
-    float: right;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    margin-top: -13px;
-    color: rgb(13, 16, 163);
-    font-weight: 600;
-    cursor: pointer;
-    padding: 3px 6px;
+.strength-meter.very-strong div {
+  width: 100%;
+  background: #7bed9f;
 }
 
-.register-big-wrapper form button {
-    cursor: pointer;
-    border: none;
-    outline: 0;
-    background-color: #0205b1;
-    width: 100%;
-    text-align: center;
-    color: white;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 14px;
-    letter-spacing: 0.4px;
+/* Register banner section */
+.register-banner-section {
+  background: var(--primary-gradient);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.error_message {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    margin-top: -1.2rem;
-    background-color: rgba(245, 72, 72, 0.9);
-    color: white;
-    padding: 8px;
-    font-size: 0.9rem;
-    text-align: center;
+.register-banner-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+}
+
+.register-banner-section img {
+  max-width: 80%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Login suggestion */
+.top-suggest_login {
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+.top-suggest_login span {
+  color: var(--text-color-light);
+  margin-right: 0.5rem;
+}
+
+.top-suggest_login a {
+  color: var(--button-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.top-suggest_login a:hover {
+  color: var(--button-hover);
+}
+
+/* Register button styling */
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background: var(--button-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form button:hover {
+  background: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 99, 165, 0.15);
+}
+
+.auth-form button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 99, 165, 0.1);
+}
+
+.auth-form button:disabled {
+  background: var(--button-disabled);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.auth-form button:not(:disabled) {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Ripple effect */
+.auth-form button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out;
+}
+
+.auth-form button:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.8;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media screen and (max-width: 968px) {
+  .register-big-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .register-banner-section {
+    display: none;
+  }
+
+  .section-wrapper {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Inclusive-register-page {
+    padding: 1rem;
+  }
+
+  .section-wrapper {
+    padding: 1.5rem;
+  }
+
+  .top-register-explain h2 {
+    font-size: 1.5rem;
+  }
 }
