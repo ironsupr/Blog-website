@@ -142,7 +142,7 @@ Experience our blog platform in both light and dark themes:
 1. Clone the repository:
 
    ```powershell
-   git clone <repository-url>
+   git clone https://github.com/ironsupr/Blog-website
    cd mern-blog-v2-main
    ```
 
