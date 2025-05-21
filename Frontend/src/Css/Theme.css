@@ -16,9 +16,10 @@
   --button-secondary: #5B9FE6;
   --button-secondary-hover: #7DB1EA;
   --code-background: #f5f9ff;
-  --code-color: #2c3e50;
-  --primary-color: #4A90E2;
+  --code-color: #2c3e50;  --primary-color: #4A90E2;
   --primary-color-dark: #357ABD;
+  --logo-gradient-start: #4A90E2;
+  --logo-gradient-end: #4facfe;
 }
 
 /* Dark theme colors */
