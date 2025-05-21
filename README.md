@@ -21,7 +21,7 @@ Here's a visual overview of the key features and interfaces in our blog platform
 
 ### Home Page & Story Cards
 
-![Home Page](screenshots/home-page.png)
+![Home Page](screenshots/home.png)
 _The main blog feed with story cards in a modern, responsive grid layout_
 
 ### Rich Text Editor
