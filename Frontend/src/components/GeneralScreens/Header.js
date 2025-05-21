@@ -62,7 +62,7 @@ const Header = () => {
         <header>
             <div className="averager">
                 <Link to="/" className="logo">
-                    <h5>MERN BLOG</h5>
+                    <h5>StoryVerse</h5>
                 </Link>
 
                 <div className="desktop-nav">

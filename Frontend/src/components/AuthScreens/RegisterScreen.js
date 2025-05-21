@@ -81,7 +81,7 @@ const RegisterScreen = () => {
           </div>
 
           <div className="top-register-explain">
-            <h2>Join MERN Blog Community</h2>
+            <h2>Join StoryVerse Community</h2>
             <p>
               Start your writing journey and share your stories with the world
             </p>

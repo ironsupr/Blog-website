@@ -48,7 +48,7 @@ const login  = asyncErrorWrapper (async(req,res,next) => {
     }
 
     if(!comparePassword(password,user.password)){
-        return next(new CustomError("Please chech your credentails",404))
+        return next(new CustomError("Please check your credentails",404))
     }
 
     sendToken(user ,200,res)  ;
