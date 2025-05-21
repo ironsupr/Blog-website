@@ -19,10 +19,11 @@ const AddStory = () => {
     const [tagInput, setTagInput] = useState('')
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
-    const [lastSaved, setLastSaved] = useState(null)
     const [isDraftSaved, setIsDraftSaved] = useState(false)
     const [isTyping, setIsTyping] = useState(false)
     const [typingTimeout, setTypingTimeout] = useState(null)
+    const [lastSaved, setLastSaved] = useState(null)
+    const [currentDraftSlug, setCurrentDraftSlug] = useState(null)
 
     const clearInputs = () => {
         setTitle('')
@@ -47,7 +48,7 @@ const AddStory = () => {
         return () => clearTimeout(typingTimeout)
     }, [isTyping, title, content, tags])
 
-    // Auto-save every 30 seconds
+    // Auto-save every 30 seconds if there's content
     useEffect(() => {
         if (title || content) {
             const autoSaveInterval = setInterval(() => {
@@ -72,7 +73,19 @@ const AddStory = () => {
         formdata.append("tags", JSON.stringify(tags))
 
         try {
-            await axios.post("/story/addstory", formdata, config)
+            if (currentDraftSlug) {
+                // Update existing draft
+                await axios.put(`/story/draft/${currentDraftSlug}`, formdata, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    }
+                })
+            } else {
+                // Create new draft
+                const { data } = await axios.post("/story/draft", formdata, config)
+                setCurrentDraftSlug(data.data.slug)
+            }
             setLastSaved(new Date())
             setIsDraftSaved(true)
             setTimeout(() => setIsDraftSaved(false), 3000)
@@ -89,6 +102,14 @@ const AddStory = () => {
         formdata.append("content", content)
         formdata.append("isDraft", false)
         formdata.append("tags", JSON.stringify(tags))
+
+        if (image === '') {
+            setError("Please select an image")
+            setTimeout(() => {
+                setError('')
+            }, 7000)
+            return
+        }
 
         try {
             const { data } = await axios.post("/story/addstory", formdata, config)

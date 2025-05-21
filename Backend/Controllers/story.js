@@ -71,6 +71,191 @@ const getAllDrafts = asyncErrorWrapper(async (req, res, next) => {
     });
 });
 
+const saveDraft = asyncErrorWrapper(async (req, res, next) => {
+    const { title, content, tags } = req.body;
+    
+    // Check if draft with same title exists
+    const existingDraft = await Story.findOne({
+        title,
+        author: req.user.id,
+        isDraft: true
+    });
+
+    if (existingDraft) {
+        // Update existing draft
+        existingDraft.content = content;
+        existingDraft.tags = JSON.parse(tags);
+        existingDraft.lastSaved = new Date();
+        
+        if (req.file) {
+            if (existingDraft.image !== "default.jpg") {
+                deleteImageFile(req, existingDraft.image);
+            }
+            existingDraft.image = req.savedStoryImage;
+        }
+        
+        await existingDraft.save();
+        
+        return res.status(200).json({
+            success: true,
+            message: "Draft updated successfully",
+            data: existingDraft
+        });
+    }
+    
+    // Create new draft if none exists
+    const draft = await Story.create({
+        title,
+        content,
+        author: req.user.id,
+        image: req.savedStoryImage || "default.jpg",
+        tags: JSON.parse(tags),
+        isDraft: true,
+        lastSaved: new Date()
+    });
+
+    return res.status(201).json({
+        success: true,
+        message: "Draft created successfully",
+        data: draft
+    });
+});
+
+const updateDraft = asyncErrorWrapper(async (req, res, next) => {
+    const { slug } = req.params;
+    const { title, content, tags } = req.body;
+    
+    let draft = await Story.findOne({ 
+        slug,
+        isDraft: true,
+        author: req.user.id
+    });
+    
+    if (!draft) {
+        return res.status(404).json({
+            success: false,
+            error: "Draft not found"
+        });
+    }
+    
+    draft.title = title;
+    draft.content = content;
+    draft.tags = JSON.parse(tags);
+    draft.lastSaved = new Date();
+    
+    if (req.file) {
+        if (draft.image !== "default.jpg") {
+            deleteImageFile(req, draft.image);
+        }
+        draft.image = req.savedStoryImage;
+    }
+    
+    await draft.save();
+
+    return res.status(200).json({
+        success: true,
+        message: "Draft updated successfully",
+        data: draft
+    });
+});
+
+const deleteDraft = asyncErrorWrapper(async (req, res, next) => {
+    const { slug } = req.params;
+    
+    const draft = await Story.findOne({ 
+        slug,
+        isDraft: true,
+        author: req.user.id
+    });
+    
+    if (!draft) {
+        return res.status(404).json({
+            success: false,
+            error: "Draft not found"
+        });
+    }
+    
+    if (draft.image !== "default.jpg") {
+        deleteImageFile(req, draft.image);
+    }
+    
+    await draft.remove();
+    
+    return res.status(200).json({
+        success: true,
+        message: "Draft deleted successfully"
+    });
+});
+
+const publishDraft = asyncErrorWrapper(async (req, res, next) => {
+    const { slug } = req.params;
+    
+    try {
+        // First, find the draft to be published
+        const draft = await Story.findOne({ 
+            slug: slug, 
+            isDraft: true,
+            author: req.user.id // Ensure user owns the draft
+        });
+        
+        if (!draft) {
+            return res.status(404).json({
+                success: false,
+                error: "Draft not found"
+            });
+        }
+
+        // Get all drafts by this author with the same title
+        const relatedDrafts = await Story.find({
+            author: req.user.id,
+            title: draft.title,
+            isDraft: true,
+            _id: { $ne: draft._id }
+        });
+
+        // Delete all related drafts except the one being published
+        if (relatedDrafts.length > 0) {
+            await Story.deleteMany({
+                _id: { $in: relatedDrafts.map(d => d._id) }
+            });
+        }
+
+        // Calculate read time
+        const wordCount = draft.content.trim().split(/\s+/).length;
+        const readtime = Math.floor(wordCount/200);
+
+        // Update the story to mark it as published
+        const publishedStory = await Story.findOneAndUpdate(
+            { _id: draft._id },
+            { 
+                isDraft: false,
+                readtime,
+                lastSaved: new Date()
+            },
+            { new: true }
+        ).populate('author');
+
+        // Delete all other drafts of this story by this author
+        await Story.deleteMany({
+            _id: { $ne: draft._id },
+            author: req.user.id,
+            title: draft.title,
+            isDraft: true
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Story published successfully",
+            data: publishedStory
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: "Error publishing story"
+        });
+    }
+});
+
 const detailStory =asyncErrorWrapper(async(req,res,next)=>{
 
     const {slug}=req.params ;
@@ -192,74 +377,55 @@ const deleteStory  =asyncErrorWrapper(async(req,res,next)=>{
 
 })
 
-
-const getStoriesByTag = asyncErrorWrapper(async (req, res, next) => {
-    const { tag } = req.params;
-    const stories = await Story.find({
-        tags: tag.toLowerCase(),
-        isDraft: false
-    })
-    .populate('author')
-    .sort('-createdAt');
-
-    return res.status(200).json({
-        success: true,
-        data: stories
-    });
-});
-
 const getAllTags = asyncErrorWrapper(async (req, res, next) => {
-    const tags = await Story.aggregate([
-        { $match: { isDraft: false } },
-        { $unwind: '$tags' },
-        { $group: { _id: '$tags', count: { $sum: 1 } } },
-        { $sort: { count: -1 } },
-        { $limit: 20 }
-    ]);
-
+    const tags = await Story.distinct('tags', { isDraft: false });
+    
     return res.status(200).json({
         success: true,
         data: tags
     });
 });
 
-const updateDraft = asyncErrorWrapper(async (req, res, next) => {
-    const { slug } = req.params;
-    const { title, content, tags } = req.body;
+const getStoriesByTag = asyncErrorWrapper(async (req, res, next) => {
+    const { tag } = req.params;
+    const page = parseInt(req.query.page) || 1;
+    const limit = 6;
+    const skip = (page - 1) * limit;
 
-    const story = await Story.findOne({ slug: slug, author: req.user._id });
-    
-    if (!story) {
-        return res.status(404).json({
-            success: false,
-            message: 'Draft not found'
-        });
-    }
+    const stories = await Story.find({ 
+        tags: tag,
+        isDraft: false 
+    })
+    .sort('-createdAt')
+    .skip(skip)
+    .limit(limit)
+    .populate('author');
 
-    story.title = title;
-    story.content = content;
-    story.tags = tags ? JSON.parse(tags) : story.tags;
-    story.draftLastModified = new Date();
-
-    await story.save();
+    const totalStories = await Story.countDocuments({ tags: tag, isDraft: false });
+    const pages = Math.ceil(totalStories / limit);
 
     return res.status(200).json({
         success: true,
-        message: 'Draft updated successfully',
-        data: story
+        data: stories,
+        pages,
+        page,
+        totalStories
     });
 });
 
-module.exports ={
+module.exports = {
     addStory,
     getAllStories,
     getAllDrafts,
-    detailStory,
-    getStoriesByTag,
-    getAllTags,
+    saveDraft,
     updateDraft,
+    deleteDraft,
+    publishDraft,
+    detailStory,
     likeStory,
     editStoryPage,
-    editStory ,
-    deleteStory
+    editStory,
+    deleteStory,
+    getAllTags,
+    getStoriesByTag
 }

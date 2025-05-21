@@ -1,25 +1,24 @@
 :root {
-  /* Light theme colors (default) - Space Theme */
-  --background-color: #0a1929;
-  --background-gradient: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
-  --text-color: #e0f2ff;
-  --text-color-light: #88b2d9;
-  --border-color: rgba(99, 179, 237, 0.15);
-  --card-background: rgba(13, 25, 42, 0.7);
-  --card-shadow: 0 8px 32px rgba(2, 4, 15, 0.3);
-  --header-background: rgba(10, 25, 41, 0.8);
-  --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  --input-background: rgba(23, 49, 77, 0.6);
-  --button-primary: #2d9cdb;
-  --button-hover: #3db3f5;
-  --button-disabled: rgba(45, 156, 219, 0.5);
-  --button-primary-transparent: rgba(45, 156, 219, 0.15);
-  --button-secondary: #4299e1;
-  --button-secondary-hover: #63b3ed;
-  --code-background: #1a365d;
-  --code-color: #e2e8f0;
-  --primary-color: #2d9cdb;
-  --primary-color-dark: #2b6cb0;
+  /* Light theme colors (default) - Sky Blue & White Theme */
+  --background-color: #f0f7ff;
+  --background-gradient: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+  --text-color: #2c3e50;
+  --text-color-light: #5a7184;
+  --border-color: rgba(100, 149, 237, 0.15);
+  --card-background: rgba(255, 255, 255, 0.9);
+  --card-shadow: 0 8px 32px rgba(100, 149, 237, 0.12);
+  --header-background: rgba(255, 255, 255, 0.95);
+  --header-shadow: 0 4px 20px rgba(100, 149, 237, 0.1);
+  --input-background: rgba(255, 255, 255, 0.9);
+  --button-primary: #4A90E2;  --button-hover: #357ABD;
+  --button-disabled: rgba(74, 144, 226, 0.5);
+  --button-primary-transparent: rgba(74, 144, 226, 0.12);
+  --button-secondary: #5B9FE6;
+  --button-secondary-hover: #7DB1EA;
+  --code-background: #f5f9ff;
+  --code-color: #2c3e50;
+  --primary-color: #4A90E2;
+  --primary-color-dark: #357ABD;
 }
 
 /* Dark theme colors */

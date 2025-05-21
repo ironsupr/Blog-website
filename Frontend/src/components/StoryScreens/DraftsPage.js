@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiPlus } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { IoMdSend } from 'react-icons/io';
 import Loader from '../GeneralScreens/Loader';
 import '../../Css/DraftsPage.css';
 
 const DraftsPage = () => {
     const [drafts, setDrafts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [publishingSlug, setPublishingSlug] = useState(null);
 
     useEffect(() => {
         const fetchDrafts = async () => {
@@ -50,6 +52,33 @@ const DraftsPage = () => {
         }
     };
 
+    const handlePublish = async (slug) => {
+        if (window.confirm("Are you sure you want to publish this story?")) {
+            setPublishingSlug(slug);
+            try {
+                const { data } = await axios.put(`/story/draft/${slug}/publish`, {}, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                });
+                
+                // Remove the draft from the list
+                setDrafts(drafts.filter(draft => draft.slug !== slug));
+                
+                // Navigate to the published story
+                if (data.success && data.data) {
+                    window.location.href = `/story/${data.data.slug}`;
+                }
+            } catch (error) {
+                console.log(error);
+                alert(error.response?.data?.error || "Error publishing story");
+            } finally {
+                setPublishingSlug(null);
+            }
+        }
+    };
+
     return (
         <div className="drafts-page">
             {loading ? (
@@ -58,7 +87,10 @@ const DraftsPage = () => {
                 <>
                     <div className="drafts-header">
                         <h1>My Drafts</h1>
-                        <Link to="/addstory" className="new-draft-btn">Create New Story</Link>
+                        <Link to="/addstory" className="new-draft-btn">
+                            <FiPlus />
+                            Create New Story
+                        </Link>
                     </div>
                     {drafts.length === 0 ? (
                         <div className="no-drafts">
@@ -90,6 +122,18 @@ const DraftsPage = () => {
                                         </div>
                                     </div>
                                     <div className="draft-actions">
+                                        <button 
+                                            onClick={() => handlePublish(draft.slug)}
+                                            className="publish-draft-btn"
+                                            disabled={publishingSlug === draft.slug}
+                                            title="Publish story">
+                                            {publishingSlug === draft.slug ? 'Publishing...' : (
+                                                <>
+                                                    <IoMdSend />
+                                                    <span>Publish</span>
+                                                </>
+                                            )}
+                                        </button>
                                         <Link to={`/story/${draft.slug}/edit`} 
                                             className="edit-draft-btn"
                                             title="Edit draft">

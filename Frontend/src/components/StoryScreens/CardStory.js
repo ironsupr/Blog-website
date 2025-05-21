@@ -22,29 +22,20 @@ const Story = ({ story }) => {
     }
     
     return (
-
         <div className="story-card">
-            <Link to={`/story/${story.slug}`} className="story-link">
-
-                <img className=" story-image" src={`/storyImages/${story.image}`} alt={story.title} />
-                <div className="story-content-wrapper">
-
-                    <h5 className="story-title">
-                        
-                    {story.title.length > 76 ? truncateTitle(story.title)+"..." : story.title
-                    
-                    }
-                    </h5>
-
-
-                    <p className="story-text"dangerouslySetInnerHTML={{__html : truncateContent( story.content) +"..."}}>
-                        </p>
-                    <p className="story-createdAt">{editDate(story.createdAt)} 
-                    </p>
-                </div>
-            </Link>
+            <div className="story-card-img">
+                <Link to={`/story/${story.slug}`}>
+                    <img src={`/storyImages/${story.image}`} alt={story.title} />
+                </Link>
+            </div>
+            <div className="story-card-content">
+                <Link to={`/story/${story.slug}`}>
+                    <h5>{story.title.length > 76 ? truncateTitle(story.title) + "..." : story.title}</h5>
+                    <p className="story-text" dangerouslySetInnerHTML={{__html: truncateContent(story.content) + "..."}}></p>
+                    <p className="story-card-date">{editDate(story.createdAt)}</p>
+                </Link>
+            </div>
         </div>
-
     )
 }
 

@@ -47,23 +47,11 @@ const StorySchema = new mongoose.Schema({
     },
     isDraft: {
         type: Boolean,
-        default: false,
-        index: true
-    },
-    draftLastModified: {
-        type: Date,
-        default: Date.now
+        default: false
     },
     tags: [{
         type: String,
-        trim: true,
-        lowercase: true,
-        validate: {
-            validator: function(v) {
-                return v.length >= 2 && v.length <= 20;
-            },
-            message: 'Tag must be between 2 and 20 characters'
-        }
+        trim: true
     }],
     lastSaved: {
         type: Date,

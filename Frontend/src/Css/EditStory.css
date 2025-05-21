@@ -17,23 +17,98 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    animation: fadeIn 0.3s ease;
 }
 
 .editStory-form input#title {
     width: 100%;
-    height: 55px;
-    outline: 0;
-    border: none;
-    border: rgb(235, 235, 235) solid 1px;
+    height: 60px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     font-size: 1.4rem;
-    padding-left: 1rem;
-    font-weight: 450;
-    font-family: 'Balsamiq Sans', cursive;
-    border-bottom: none;
+    padding: 0 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    background: var(--input-background);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.editStory-form input#title:focus {
+    border-color: var(--button-primary);
+    box-shadow: 0 0 0 2px var(--button-primary-transparent);
+    outline: none;
+    transform: translateY(-2px);
 }
 
 .ck-editor {
     margin-bottom: 1rem !important;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.editStory-btn {
+    flex: 1;
+    padding: 1rem;
+    background: var(--button-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.editStory-btn:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.publish-btn {
+    flex: 1;
+    padding: 1rem;
+    background: var(--button-secondary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.publish-btn:hover:not(:disabled) {
+    background: var(--button-secondary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.publish-btn:disabled {
+    background: var(--button-disabled);
+    cursor: not-allowed;
+}
+
+.publish-btn svg {
+    font-size: 1.2rem;
 }
 
 @media only screen and (max-width: 651px) {
@@ -42,6 +117,9 @@
     }
     .ck.ck-reset.ck-editor.ck-rounded-corners {
         width: 100% !important;
+    }
+    .button-group {
+        flex-direction: column;
     }
 }
 
@@ -110,13 +188,33 @@
 
 .editStory-btn {
     width: 100%;
-    background-color: #0063a5;
-    padding: 0.7rem;
+    padding: 1rem;
+    background: var(--button-primary);
     color: white;
-    margin-top: 1.9rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.editStory-btn:hover:not(:disabled) {
+    background: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.editStory-btn:disabled {
+    background: var(--button-disabled);
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .dis-btn {
@@ -159,6 +257,33 @@
     padding-left: 1rem;
 }
 
+.success_msg, .error_msg {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    animation: slideDown 0.3s ease;
+}
+
+.success_msg {
+    background: #e3fcef;
+    border: 1px solid #1ea97c;
+    color: #064e3b;
+}
+
+.error_msg {
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #7f1d1d;
+}
+
+.success_msg a, .error_msg a {
+    color: inherit;
+    font-weight: 600;
+    margin: 0;
+    padding-left: 1rem;
+}
+
 .currentlyImage {
     width: 100%;
     height: 280px;
@@ -187,4 +312,36 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.currentlyImage, .StoryImageField {
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    background: var(--card-background);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

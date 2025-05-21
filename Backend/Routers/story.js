@@ -2,13 +2,29 @@ const express = require("express")
 const imageupload = require("../Helpers/Libraries/imageUpload");
 
 const { getAccessToRoute } = require("../Middlewares/Authorization/auth");
-const {addStory,getAllStories,detailStory,likeStory, editStory, deleteStory, editStoryPage, getAllDrafts } = require("../Controllers/story")
+const { 
+    addStory, getAllStories, detailStory, likeStory, 
+    editStory, deleteStory, editStoryPage, getAllDrafts,
+    saveDraft, updateDraft, publishDraft, deleteDraft, getAllTags,
+    getStoriesByTag 
+} = require("../Controllers/story");
 const { checkStoryExist, checkUserAndStoryExist } = require("../Middlewares/database/databaseErrorhandler");
 
 const router = express.Router() ;
 
-router.post("/addstory" ,[getAccessToRoute, imageupload.single("image")],addStory)
+// Draft routes
+router.get("/drafts", getAccessToRoute, getAllDrafts);
+router.post("/draft", [getAccessToRoute, imageupload.single("image")], saveDraft);
+router.put("/draft/:slug", [getAccessToRoute, checkStoryExist, checkUserAndStoryExist, imageupload.single("image")], updateDraft);
+router.put("/draft/:slug/publish", [getAccessToRoute, checkStoryExist, checkUserAndStoryExist], publishDraft);
+router.delete("/draft/:slug", [getAccessToRoute, checkStoryExist, checkUserAndStoryExist], deleteDraft);
 
+// Tag routes
+router.get("/tags", getAllTags);
+router.get("/tag/:tag", getStoriesByTag);
+
+// Existing routes
+router.post("/addstory" ,[getAccessToRoute, imageupload.single("image")],addStory)
 
 router.post("/:slug", checkStoryExist, detailStory)
 

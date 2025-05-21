@@ -2,6 +2,9 @@
     max-width: 1000px;
     margin: 2rem auto;
     padding: 0 1rem;
+    min-height: 100vh;
+    background: var(--background-gradient);
+    padding: 2rem;
 }
 
 .drafts-header {
@@ -59,11 +62,13 @@
     background: var(--card-background);
     border-radius: 16px;
     border: 1px solid var(--border-color);
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
     transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
 }
 
 .draft-card:hover {
@@ -119,7 +124,37 @@
 .draft-actions {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
+    min-width: 120px;
+}
+
+.publish-draft-btn {
+    background: var(--button-primary) !important;
+    color: white !important;
+    padding: 0.7rem 1.2rem !important;
+    border-radius: 8px !important;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.publish-draft-btn:hover:not(:disabled) {
+    background: var(--button-hover) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.publish-draft-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 .edit-draft-btn,
@@ -127,11 +162,13 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1.2rem;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .edit-draft-btn {
@@ -167,10 +204,14 @@
 
     .draft-card {
         flex-direction: column;
+        padding: 1.5rem;
     }
 
     .draft-actions {
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        min-width: 100%;
     }
 }
