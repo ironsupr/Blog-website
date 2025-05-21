@@ -1,169 +1,211 @@
 .Inclusive-editprofile-page {
     position: relative;
-    width: 100vw;
-    height: 76vh;
+    width: 100%;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+    background: var(--background-gradient);
 }
 
 .Inclusive-editprofile-page form {
-    padding: 1.2rem;
-    height: 420px;
-    width: 450px;
-}
-
-.Inclusive-editprofile-page form .input-wrapper {
-    position: relative;
-    margin-bottom: 15px;
-    padding: 6px;
-}
-
-.Inclusive-editprofile-page form .input-wrapper input {
-    outline: 0;
     width: 100%;
-    padding: 18px;
-    border: #d1d1d1 solid 1px;
-    border-radius: 5px;
+    max-width: 600px;
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--input-background);
+    color: var(--text-color);
     font-size: 1rem;
-    color: #252525;
-    padding-top: 22px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding-top: 18px;
 }
 
-.Inclusive-editprofile-page form .input-wrapper label {
+.input-wrapper input:focus {
+    border-color: var(--button-primary);
+    box-shadow: 0 0 0 2px var(--button-primary-transparent);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.input-wrapper label {
     position: absolute;
-    top: -5px;
-    left: 14px;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    background-color: white;
-    color: #646464;
+    left: 15px;
+    top: -12px;
+    background: var(--card-background);
     padding: 0 8px;
-}
-
-.Inclusive-editprofile-page form input:focus-within {
-    border: #0205b1 solid 1px;
-}
-
-.Inclusive-editprofile-page form input:focus+label {
-    color: #0205b1 !important;
+    color: var(--button-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 1;
 }
 
 .profile-ımg-upld-wrapper {
-    height: 190px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-}
-
-.profile-ımg-upld-wrapper .currentImage {
-    width: 48%;
-    border: rgb(235, 235, 235) solid 1px;
-    position: relative;
-    height: 100%;
-    padding: 0.8rem;
-}
-
-.profile-ımg-upld-wrapper .currentImage .absolute {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    color: white;
-    background-color: #0205b1;
-    font-size: 0.6rem;
-    font-weight: bold;
-    opacity: 0.6;
-    font-family: 'Mukta ', sans-serif;
-    z-index: 52;
-}
-
-.currentImage img {
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    object-fit: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
 .ProfilePhotoField {
-    border: rgb(235, 235, 235) solid 1px;
-    width: 48%;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background: var(--input-background);
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
     cursor: pointer;
+    transition: all 0.3s ease;
     position: relative;
 }
 
+.ProfilePhotoField:hover {
+    border-color: var(--button-primary);
+    background: var(--button-primary-transparent);
+}
+
 .ProfilePhotoField svg {
-    font-size: 4.4rem;
-    color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 0.6rem;
-    margin-top: 19px;
+    font-size: 3rem;
+    color: var(--text-color-light);
+    margin-bottom: 1rem;
 }
 
 .ProfilePhotoField .txt {
-    margin-top: 14px;
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-color);
+    font-size: 0.9rem;
 }
 
 .ProfilePhotoField .txt div {
     display: flex;
     align-items: center;
-}
-
-.ProfilePhotoField .txt svg {
-    font-size: 1.5rem;
-    margin-right: 10px;
-    margin-top: 7px;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .ProfilePhotoField [type="file"] {
     width: 100%;
-    height: 200px;
+    height: 100%;
     position: absolute;
+    top: 0;
+    left: 0;
     opacity: 0;
     cursor: pointer;
 }
 
+.currentImage {
+    background: var(--input-background);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.currentImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.currentImage .absolute {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: var(--button-primary);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+}
+
 .editprofile-btn {
     width: 100%;
-    background-color: #0063a5;
-    padding: 0.7rem;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--button-primary), var(--button-hover));
     color: white;
-    margin-top: 1.9rem;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.Inclusive-editprofile-page form .error_msg {
+.editprofile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--button-primary-transparent);
+}
+
+.error_msg,
+.success_msg {
     width: 100%;
-    border-radius: 8px;
+    padding: 1rem;
+    border-radius: 10px;
     margin-bottom: 1.5rem;
-    background-color: rgba(245, 72, 72, 0.9);
-    color: white;
-    padding: 8px;
-    font-size: 0.9rem;
-    text-align: center;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
-.Inclusive-editprofile-page form .success_msg {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    background-color: rgba(14, 218, 75, 0.9);
-    color: white;
-    padding: 8px;
-    font-size: 0.9rem;
-    text-align: center;
+.error_msg {
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+    color: #f44336;
 }
 
-.Inclusive-editprofile-page form .success_msg a {
-    color: black;
-    font-weight: bold;
-    padding-left: 1rem;
+.success_msg {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+@media screen and (max-width: 768px) {
+    .Inclusive-editprofile-page {
+        padding: 1rem;
+    }
+
+    .Inclusive-editprofile-page form {
+        padding: 1.5rem;
+    }
+
+    .profile-ımg-upld-wrapper {
+        grid-template-columns: 1fr;
+    }
 }

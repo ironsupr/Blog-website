@@ -384,34 +384,42 @@ header {
 /* Profile menu enhancements */
 .header-profile-wrapper {
   position: relative;
+  z-index: 100;
 }
 
 .header-profile-wrapper img {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  background: var(--input-background);
 }
 
 .header-profile-wrapper img:hover {
   border-color: var(--button-primary);
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px var(--button-primary-transparent);
 }
 
 .sub-profile-wrap {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
-  width: 200px;
+  width: 220px;
   background: var(--card-background);
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  padding: 0.5rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
   margin-top: 0.5rem;
-  display: none;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
@@ -425,28 +433,69 @@ header {
   }
 }
 
-.header-profile-wrapper:hover .sub-profile-wrap {
-  display: block;
+.header-profile-wrapper:hover .sub-profile-wrap,
+.sub-profile-wrap:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.profile-link, .logout-btn {
+.profile-link, 
+.logout-btn {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 0.75rem 1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--text-color);
   background: transparent;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
-.profile-link:hover, .logout-btn:hover {
-  background: var(--input-background);
+.profile-link:hover, 
+.logout-btn:hover {
+  background: var(--button-primary-transparent);
   color: var(--button-primary);
+  transform: translateX(4px);
+}
+
+/* Add hover effects for icons */
+.profile-link svg, 
+.logout-btn svg {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.profile-link:hover svg, 
+.logout-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Add a subtle divider between menu items */
+.profile-link {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Hover indicator */
+.sub-profile-wrap::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--card-background);
+  border-left: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  transform: rotate(45deg);
 }
 
 /* Read list badge */

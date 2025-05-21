@@ -4,7 +4,7 @@ import "../../Css/Profile.css"
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../GeneralScreens/Loader";
 import { AuthContext } from '../../Context/AuthContext';
-import { FiArrowLeft } from 'react-icons/fi'
+import { FiArrowLeft, FiUser, FiMail, FiCalendar, FiEdit2, FiKey } from 'react-icons/fi'
 
 const Profile = () => {
     const { config } = useContext(AuthContext)
@@ -54,17 +54,15 @@ const Profile = () => {
                             <FiArrowLeft />
                         </Link>
                         <div className="profile-top-wrap">
-
                             <span>
                                 Membership Information
                             </span>
-
-                            <a href="#!">Close  Account</a>
+                            <a href="#!" title="Close Account">Close Account</a>
                         </div>
                         <ul>
-
                             <li>
                                 <span>
+                                    <FiUser />
                                     Username
                                 </span>
                                 <div>
@@ -72,30 +70,35 @@ const Profile = () => {
                                 </div>
                             </li>
                             <li>
-                                <span>E-Mail</span>
+                                <span>
+                                    <FiMail />
+                                    E-Mail
+                                </span>
                                 <div>
                                     {user.email}
                                 </div>
-
                             </li>
                             <li>
-
-                                <span> Account Created Date </span>
+                                <span>
+                                    <FiCalendar />
+                                    Account Created Date
+                                </span>
                                 <div>
                                     {editDate(user.createdAt)}
                                 </div>
                             </li>
-
                         </ul>
 
                         <div className='btns_wrap'>
                             <button className='profileEditBtn'>
                                 <Link to="/edit_profile">
+                                    <FiEdit2 />
                                     Edit Profile
                                 </Link>
                             </button>
                             <button className='changePassBtn'>
                                 <Link to="/change_password">
+                                    <FiKey />
                                     Change Password
                                 </Link>
                             </button>

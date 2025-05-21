@@ -4,53 +4,93 @@ A modern, full-featured blogging platform built with the MERN stack (MongoDB, Ex
 
 ## 📸 Project Showcase
 
-Here's a visual overview of the key features and interfaces in our blog platform:
+Experience our blog platform in both light and dark themes:
 
-### Authentication Pages
+### Light & Dark Theme Support
 
 <div style="display: flex; gap: 20px; margin-bottom: 20px;">
     <div>
-        <img src="screenshots/login.png" alt="Login Page" width="400"/>
-        <p align="center"><em>Login Page with Dark Theme Support</em></p>
+        <img src="screenshots/login-light.png" alt="Login Page - Light Theme" width="400"/>
+        <p align="center"><em>Login Page - Light Theme</em></p>
     </div>
     <div>
-        <img src="screenshots/register.png" alt="Register Page" width="400"/>
-        <p align="center"><em>Registration Page with Form Validation</em></p>
+        <img src="screenshots/login-dark.png" alt="Login Page - Dark Theme" width="400"/>
+        <p align="center"><em>Login Page - Dark Theme</em></p>
     </div>
 </div>
 
-### Home Page & Story Cards
+### User Registration
 
-![Home Page](screenshots/home.png)
-_The main blog feed with story cards in a modern, responsive grid layout_
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <img src="screenshots/register-light.png" alt="Register Page - Light Theme" width="400"/>
+        <p align="center"><em>Registration Page - Light Theme</em></p>
+    </div>
+    <div>
+        <img src="screenshots/register-dark.png" alt="Register Page - Dark Theme" width="400"/>
+        <p align="center"><em>Registration Page - Dark Theme</em></p>
+    </div>
+</div>
+
+### Blog Feed & Story Cards
+
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <img src="screenshots/home-light.png" alt="Home Page - Light Theme" width="400"/>
+        <p align="center"><em>Blog Feed - Light Theme</em></p>
+    </div>
+    <div>
+        <img src="screenshots/home-dark.png" alt="Home Page - Dark Theme" width="400"/>
+        <p align="center"><em>Blog Feed - Dark Theme</em></p>
+    </div>
+</div>
 
 ### Rich Text Editor
 
-![Editor](screenshots/editor-page.png)
-_Full-featured rich text editor with image upload support_
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <img src="screenshots/editor-light.png" alt="Editor - Light Theme" width="400"/>
+        <p align="center"><em>Rich Text Editor - Light Theme</em></p>
+    </div>
+    <div>
+        <img src="screenshots/editor-dark.png" alt="Editor - Dark Theme" width="400"/>
+        <p align="center"><em>Rich Text Editor - Dark Theme</em></p>
+    </div>
+</div>
 
-### User Profile
+### User Profiles
 
-![Profile](screenshots/profile-page.png)
-_Customizable user profiles with story management_
-
-### Reading List
-
-![Reading List](screenshots/reading-list.png)
-_Personalized reading list for saved articles_
-
-### Comments & Interactions
-
-![Comments](screenshots/comments.png)
-_Interactive comment system with real-time updates_
+<div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <img src="screenshots/profile-light.png" alt="Profile - Light Theme" width="400"/>
+        <p align="center"><em>User Profile - Light Theme</em></p>
+    </div>
+    <div>
+        <img src="screenshots/profile-dark.png" alt="Profile - Dark Theme" width="400"/>
+        <p align="center"><em>User Profile - Dark Theme</em></p>
+    </div>
+</div>
 
 ### Responsive Design
 
-<div style="display: flex; gap: 10px;">
-    <img src="screenshots/mobile-view.png" alt="Mobile View" width="200"/>
-    <img src="screenshots/tablet-view.png" alt="Tablet View" width="300"/>
+<div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+    <div>
+        <img src="screenshots/mobile-light.png" alt="Mobile View - Light" width="200"/>
+        <p align="center"><em>Mobile - Light</em></p>
+    </div>
+    <div>
+        <img src="screenshots/mobile-dark.png" alt="Mobile View - Dark" width="200"/>
+        <p align="center"><em>Mobile - Dark</em></p>
+    </div>
+    <div>
+        <img src="screenshots/tablet-light.png" alt="Tablet View - Light" width="300"/>
+        <p align="center"><em>Tablet - Light</em></p>
+    </div>
+    <div>
+        <img src="screenshots/tablet-dark.png" alt="Tablet View - Dark" width="300"/>
+        <p align="center"><em>Tablet - Dark</em></p>
+    </div>
 </div>
-*Responsive design that works beautifully across all devices*
 
 ## ✨ Features
 
