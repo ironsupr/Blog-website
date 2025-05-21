@@ -1,4 +1,4 @@
-# MERN Stack Blog Platform
+# StoryVerse - Share Your Stories
 
 A modern, full-featured blogging platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js). Features a beautiful UI with a responsive design, rich text editing, image uploads, user authentication, and more.
 
