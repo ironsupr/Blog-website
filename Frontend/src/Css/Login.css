@@ -118,12 +118,12 @@
   width: 100%;
   max-width: 400px;
   margin: 0 0 0 auto;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--card-background);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(100, 149, 237, 0.12);
-  backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(100, 149, 237, 0.15);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -138,23 +138,23 @@
 .input-wrapper input {
   width: 100%;
   padding: 14px 16px;
-  border: 2px solid rgba(100, 149, 237, 0.2);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--input-background);
   color: var(--text-color);
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px);
   letter-spacing: 0.3px;
   line-height: 1.5;
 }
 
 .input-wrapper input:focus {
   border-color: var(--button-primary);
-  box-shadow: 0 0 15px rgba(100, 149, 237, 0.2);
+  box-shadow: 0 0 15px var(--button-primary-transparent);
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 1);
+  background: var(--input-background);
 }
 
 .input-wrapper input::placeholder {
@@ -172,8 +172,6 @@
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-shadow: 0 0 10px rgba(45, 156, 219, 0.3);
-  transform: translateY(1px);
   z-index: 1;
 }
 

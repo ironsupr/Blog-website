@@ -18,7 +18,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
 }
 
 .section-wrapper {
@@ -199,6 +200,40 @@
 .auth-form button:active::after {
   width: 200px;
   height: 200px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--input-background);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+.auth-form input:focus {
+  border-color: var(--button-primary);
+  box-shadow: 0 0 15px var(--button-primary-transparent);
+  transform: translateY(-2px);
+  background: var(--input-background);
+}
+
+.auth-form label {
+  position: absolute;
+  left: 15px;
+  top: -12px;
+  background: var(--card-background);
+  padding: 0 8px;
+  color: var(--button-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 1;
 }
 
 /* Loading spinner */
