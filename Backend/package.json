@@ -7,7 +7,7 @@
         "start": "nodemon server.js "
     },
     "keywords": [],
-    "author": "Gilbert Hutapea ",
+    "author": "ironsupr",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
